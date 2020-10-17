@@ -16,7 +16,8 @@ data class Task(
 ) {
     val id: String = UUID.randomUUID().toString()
 
-    val color: Int = generateRandomColor()
+    val color: Int
+    get() = generateRandomColor()
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

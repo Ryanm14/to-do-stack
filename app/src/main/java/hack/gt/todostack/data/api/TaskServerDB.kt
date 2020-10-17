@@ -33,6 +33,24 @@ object TaskServerDB {
         })
     }
 
+    fun completeTask(task: Task){
+        val json = """{"id": "${task.id}"}""".trim()
+        val request = Request.Builder()
+            .url("http://flask-env.eba-jrfcemxe.us-east-1.elasticbeanstalk.com/complete_task")
+            .post(json.toRequestBody(JSON))
+            .build()
+
+        client.newCall(request).enqueue(object: Callback {
+            override fun onFailure(call: Call, e: java.io.IOException) {
+                println()
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                println(response.body!!.string())
+            }
+        })
+    }
+
     fun getAllTasks(callback: TaskRepository.GetTasks) {
         val request = Request.Builder()
             .url("http://flask-env.eba-jrfcemxe.us-east-1.elasticbeanstalk.com/get_all_tasks")
