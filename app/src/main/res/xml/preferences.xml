@@ -1,4 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory
+        android:key="general_category"
+        android:title="General">
+        <!--
+        <DropDownPreference
+            android:key="task_ordering"
+            android:title="Task Priority"
+            app:useSimpleSummaryProvider="true"
+            android:entries="@array/weekdays"
+            android:entryValues="@array/weekdays"/>
+            -->
+        <MultiSelectListPreference
+            android:key="task_ordering"
+            android:title="Task Priority"
+            android:entries="@array/task_priority"
+            android:entryValues="@array/task_priority"
+            android:defaultValue="@array/empty_array"/>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="weekly_time_category"
+        android:title="Weekly Hours">
+        <EditTextPreference
+            android:key="sunday_time"
+            android:title="Sundays"/>
+        <EditTextPreference
+            android:key="monday_time"
+            android:title="Mondays"/>
+        <EditTextPreference
+            android:key="tuesday_time"
+            android:title="Tuesdays"/>
+        <EditTextPreference
+            android:key="wednesday_time"
+            android:title="Wednesdays"/>
+        <EditTextPreference
+            android:key="thursday_time"
+            android:title="Thursdays"/>
+        <EditTextPreference
+            android:key="friday_time"
+            android:title="Fridays"/>
+        <EditTextPreference
+            android:key="saturday_time"
+            android:title="Saturdays"/>
+    </PreferenceCategory>
 </PreferenceScreen>

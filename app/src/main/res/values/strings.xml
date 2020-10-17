@@ -3,4 +3,17 @@
     <string name="title_tasks">Tasks</string>
     <string name="title_add_task">Add Task</string>
     <string name="title_settings">Settings</string>
+    <string-array name="task_priority">
+        <item>Prioritize difficult tasks</item>
+        <item>Prioritize urgent tasks</item>
+        <item>Prioritize important tasks</item>
+        <item>Prioritize easy tasks</item>
+        <item>Prioritize efficiency</item>
+    </string-array>
+    <string-array name="weekdays">
+        <item>Sunday</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+    </string-array>
+    <string-array name="empty_array"/>
 </resources>
