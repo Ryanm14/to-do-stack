@@ -3,23 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_tasks">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="hack.gt.todostack.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/navigation_tasks"
+        android:name="hack.gt.todostack.ui.tasks.TasksFragment"
+        android:label="@string/title_tasks"
+        tools:layout="@layout/fragment_tasks" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="hack.gt.todostack.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_add_task"
+        android:name="hack.gt.todostack.ui.addTask.AddTaskFragment"
+        android:label="@string/title_add_task"
+        tools:layout="@layout/fragment_add_task" />
 
-    <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="hack.gt.todostack.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
 </navigation>

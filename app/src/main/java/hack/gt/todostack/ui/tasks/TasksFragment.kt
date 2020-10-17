@@ -1,4 +1,4 @@
-package hack.gt.todostack.ui.home
+package hack.gt.todostack.ui.tasks
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import hack.gt.todostack.R
 
-class HomeFragment : Fragment() {
+class TasksFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
 
@@ -21,7 +21,7 @@ class HomeFragment : Fragment() {
     ): View? {
         homeViewModel =
                 ViewModelProvider(this).get(HomeViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
+        val root = inflater.inflate(R.layout.fragment_tasks, container, false)
         val textView: TextView = root.findViewById(R.id.text_home)
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
