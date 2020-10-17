@@ -46,14 +46,14 @@ class TasksFragment : Fragment(), CardStackListener {
 
     private fun updateRepo() {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-        val list = mutableListOf<Int>()
-        list.add(sharedPreferences.getInt("sunday_time", 1))
-        list.add(sharedPreferences.getInt("monday_time", 1))
-        list.add(sharedPreferences.getInt("tuesday_time", 1))
-        list.add(sharedPreferences.getInt("wednesday_time", 1))
-        list.add(sharedPreferences.getInt("thursday_time", 1))
-        list.add(sharedPreferences.getInt("friday_time", 1))
-        list.add(sharedPreferences.getInt("saturday_time", 1))
+        val list = mutableListOf<Float>()
+        list.add(sharedPreferences.getFloat("sunday_time", 1f))
+        list.add(sharedPreferences.getFloat("monday_time", 1f))
+        list.add(sharedPreferences.getFloat("tuesday_time", 1f))
+        list.add(sharedPreferences.getFloat("wednesday_time", 1f))
+        list.add(sharedPreferences.getFloat("thursday_time", 1f))
+        list.add(sharedPreferences.getFloat("friday_time", 1f))
+        list.add(sharedPreferences.getFloat("saturday_time", 1f))
         TaskRepository.timePerDay = list
     }
 

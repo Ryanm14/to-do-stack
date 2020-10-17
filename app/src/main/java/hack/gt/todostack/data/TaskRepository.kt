@@ -18,7 +18,7 @@ object TaskRepository {
     var easyFirst = false
     var effieiency = false
 
-    var timePerDay: List<Int> = emptyList()
+    var timePerDay: List<Float> = emptyList()
 
     private val getTasksCallback = object : GetTasks {
         override fun onTasksLoaded(t: List<Task>) {
