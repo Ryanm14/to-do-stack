@@ -23,8 +23,8 @@ class TasksFragment : Fragment() {
                 ViewModelProvider(this).get(TasksViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_tasks, container, false)
         val textView: TextView = root.findViewById(R.id.text_home)
-        tasksViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
+        tasksViewModel.tasks.observe(viewLifecycleOwner, Observer {
+            textView.text = it.size.toString()
         })
         return root
     }

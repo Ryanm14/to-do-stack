@@ -6,7 +6,7 @@ import androidx.preference.PreferenceFragmentCompat
 import hack.gt.todostack.R
 
 
-class MySettingsFragment : PreferenceFragmentCompat() {
+class SettingsFragment : PreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.preferences, rootKey)
     }

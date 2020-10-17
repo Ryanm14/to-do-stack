@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_settings"
-        android:name="hack.gt.todostack.ui.settings.MySettingsFragment"
+        android:name="hack.gt.todostack.ui.settings.SettingsFragment"
         android:label="@string/title_settings" />
 
 </navigation>

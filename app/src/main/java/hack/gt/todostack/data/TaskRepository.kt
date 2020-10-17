@@ -6,11 +6,15 @@ import hack.gt.todostack.data.model.Task
 
 object TaskRepository {
 
-    private val tasks: List<Task> = emptyList()
+    private val tasks: MutableList<Task> = mutableListOf()
     private val _tasksLiveData = MutableLiveData<List<Task>>().apply {
         value = tasks
     }
-    private val tasksLiveData: LiveData<List<Task>> = _tasksLiveData
 
-    fun getTasks() = _tasksLiveData
+    public val tasksLiveData: LiveData<List<Task>> = _tasksLiveData
+
+    fun addTask(task: Task) {
+        tasks.add(task)
+        _tasksLiveData.postValue(tasks)
+    }
 }
