@@ -33,14 +33,18 @@ object TaskRepository {
 
     private fun updateTasks() {
         //TODO process and update sorting of tasks
-        val todaysTasks = tasks
+        val todaysTasks = getTodaysTasks()
         _tasksLiveData.postValue(todaysTasks)
+    }
+
+    private fun getTodaysTasks(): List<Task> {
+        return tasks.filter { !it.completed }
     }
 
     fun completeTask(completedTask: Task) {
         completedTask.completed = true
-        tasks.remove(completedTask)
-        _tasksLiveData.postValue(tasks)
+        TaskServerDB.completeTask(completedTask)
+        _tasksLiveData.postValue(getTodaysTasks())
     }
 
     interface GetTasks {

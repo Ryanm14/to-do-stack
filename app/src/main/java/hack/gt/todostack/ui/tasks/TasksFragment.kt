@@ -79,6 +79,7 @@ class TasksFragment : Fragment(), CardStackListener {
 
         fun setTasks(tasks: List<Task>) {
             this.tasks = tasks
+            notifyDataSetChanged()
         }
 
         class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
