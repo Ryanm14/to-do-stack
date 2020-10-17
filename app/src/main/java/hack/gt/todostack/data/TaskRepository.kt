@@ -12,6 +12,14 @@ object TaskRepository {
         value = emptyList()
     }
 
+    var diffFirst = false
+    var urgentFirst = false
+    var importantFirst = false
+    var easyFirst = false
+    var effieiency = false
+
+    var timePerDay: List<Int> = emptyList()
+
     private val getTasksCallback = object : GetTasks {
         override fun onTasksLoaded(t: List<Task>) {
             tasks.addAll(t)

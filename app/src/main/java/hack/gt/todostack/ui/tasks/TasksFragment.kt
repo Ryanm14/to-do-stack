@@ -10,11 +10,13 @@ import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.RecyclerView
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import com.yuyakaido.android.cardstackview.CardStackListener
 import com.yuyakaido.android.cardstackview.Direction
 import hack.gt.todostack.R
+import hack.gt.todostack.data.TaskRepository
 import hack.gt.todostack.data.model.Task
 import kotlinx.android.synthetic.main.fragment_tasks.*
 import java.util.*
@@ -33,7 +35,26 @@ class TasksFragment : Fragment(), CardStackListener {
         tasksViewModel =
             ViewModelProvider(this).get(TasksViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_tasks, container, false)
+
         return root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        updateRepo()
+    }
+
+    private fun updateRepo() {
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+        val list = mutableListOf<Int>()
+        list.add(sharedPreferences.getInt("sunday_time", 1))
+        list.add(sharedPreferences.getInt("monday_time", 1))
+        list.add(sharedPreferences.getInt("tuesday_time", 1))
+        list.add(sharedPreferences.getInt("wednesday_time", 1))
+        list.add(sharedPreferences.getInt("thursday_time", 1))
+        list.add(sharedPreferences.getInt("friday_time", 1))
+        list.add(sharedPreferences.getInt("saturday_time", 1))
+        TaskRepository.timePerDay = list
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
