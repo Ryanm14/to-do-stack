@@ -1,6 +1,7 @@
 package hack.gt.todostack.data.model
 
 import android.graphics.Color
+import com.google.gson.annotations.Expose
 import java.time.Duration
 import java.util.*
 
@@ -13,7 +14,8 @@ data class Task(
     var importance: Float = 0f,
     var completed: Boolean = false
 ) {
-    private val id: String = UUID.randomUUID().toString()
+    val id: String = UUID.randomUUID().toString()
+
     val color: Int = generateRandomColor()
 
     override fun equals(other: Any?): Boolean {

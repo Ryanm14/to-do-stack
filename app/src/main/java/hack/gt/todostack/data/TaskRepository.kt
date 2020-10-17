@@ -2,6 +2,7 @@ package hack.gt.todostack.data
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import hack.gt.todostack.data.api.TaskServerDB
 import hack.gt.todostack.data.model.Task
 
 object TaskRepository {
@@ -11,14 +12,26 @@ object TaskRepository {
         value = emptyList()
     }
 
+    private val getTasksCallback = object : GetTasks {
+        override fun onTasksLoaded(t: List<Task>) {
+            tasks.addAll(t)
+            updateTasks()
+        }
+    }
+
+    init {
+        TaskServerDB.getAllTasks(getTasksCallback)
+    }
+
     val tasksLiveData: LiveData<List<Task>> = _tasksLiveData
 
     fun addTask(task: Task) {
         tasks.add(task)
-        updateAddedTask()
+        updateTasks()
+        TaskServerDB.addTask(task)
     }
 
-    private fun updateAddedTask() {
+    private fun updateTasks() {
         //TODO process and update sorting of tasks
         val todaysTasks = tasks
         _tasksLiveData.postValue(todaysTasks)
@@ -28,5 +41,9 @@ object TaskRepository {
         completedTask.completed = true
         tasks.remove(completedTask)
         _tasksLiveData.postValue(tasks)
+    }
+
+    interface GetTasks {
+        fun onTasksLoaded(tasks: List<Task>)
     }
 }
