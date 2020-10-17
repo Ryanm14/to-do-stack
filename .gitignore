@@ -9,3 +9,4 @@ creds/secure-connect-todo-cloud.zip
 .idea/*
 __pycache__/*
 venv/*
+*.pyc

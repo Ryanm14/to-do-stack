@@ -58,6 +58,16 @@ def get_all_tasks():
     return json.dumps(tasks), status.HTTP_200_OK
 
 
+@application.route('/complete_task', methods=['GET', 'POST'])
+def complete_task():
+    session = connect_database.get_session()
+    properties = request.get_json()
+    id = uuid.UUID(properties['id'])
+    prepared = session.prepare("UPDATE Task SET completed = ? WHERE id = ?")
+    session.execute(prepared, ["true", id])
+    return "Task updated successfully", status.HTTP_200_OK
+
+
 if __name__ == '__main__':
     connect_database.connect_datastax()
     application.run()
