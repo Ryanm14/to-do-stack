@@ -7,6 +7,7 @@ import hack.gt.todostack.data.TaskRepository
 import hack.gt.todostack.data.model.Task
 
 class TasksViewModel : ViewModel() {
+    fun completeTask(completedTask: Task) = TaskRepository.completeTask(completedTask)
 
     val tasks: LiveData<List<Task>> = TaskRepository.tasksLiveData
 }

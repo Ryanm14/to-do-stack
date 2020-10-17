@@ -8,13 +8,25 @@ object TaskRepository {
 
     private val tasks: MutableList<Task> = mutableListOf()
     private val _tasksLiveData = MutableLiveData<List<Task>>().apply {
-        value = tasks
+        value = emptyList()
     }
 
-    public val tasksLiveData: LiveData<List<Task>> = _tasksLiveData
+    val tasksLiveData: LiveData<List<Task>> = _tasksLiveData
 
     fun addTask(task: Task) {
         tasks.add(task)
+        updateAddedTask()
+    }
+
+    private fun updateAddedTask() {
+        //TODO process and update sorting of tasks
+        val todaysTasks = tasks
+        _tasksLiveData.postValue(todaysTasks)
+    }
+
+    fun completeTask(completedTask: Task) {
+        completedTask.completed = true
+        tasks.remove(completedTask)
         _tasksLiveData.postValue(tasks)
     }
 }
