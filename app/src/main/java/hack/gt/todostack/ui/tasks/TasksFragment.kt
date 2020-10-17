@@ -12,18 +12,18 @@ import hack.gt.todostack.R
 
 class TasksFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var tasksViewModel: TasksViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        homeViewModel =
-                ViewModelProvider(this).get(HomeViewModel::class.java)
+        tasksViewModel =
+                ViewModelProvider(this).get(TasksViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_tasks, container, false)
         val textView: TextView = root.findViewById(R.id.text_home)
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
+        tasksViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root
