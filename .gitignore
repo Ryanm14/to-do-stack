@@ -1,0 +1,11 @@
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+
+creds/secure-connect-todo-cloud.zip
+.env
+.idea/*
+__pycache__/*
+venv/*
