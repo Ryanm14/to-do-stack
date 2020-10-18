@@ -1,5 +1,6 @@
 package hack.gt.todostack.ui.tasks
 
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -47,6 +48,7 @@ class TasksFragment : Fragment(), CardStackListener {
     private fun updateRepo() {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
         val list = mutableListOf<Float>()
+        /*
         list.add(sharedPreferences.getFloat("sunday_time", 1f))
         list.add(sharedPreferences.getFloat("monday_time", 1f))
         list.add(sharedPreferences.getFloat("tuesday_time", 1f))
@@ -54,7 +56,27 @@ class TasksFragment : Fragment(), CardStackListener {
         list.add(sharedPreferences.getFloat("thursday_time", 1f))
         list.add(sharedPreferences.getFloat("friday_time", 1f))
         list.add(sharedPreferences.getFloat("saturday_time", 1f))
+         */
+        list.add(getPreferenceValue(sharedPreferences,"sunday_time"))
+        list.add(getPreferenceValue(sharedPreferences,"monday_time"))
+        list.add(getPreferenceValue(sharedPreferences,"tuesday_time"))
+        list.add(getPreferenceValue(sharedPreferences,"wednesday_time"))
+        list.add(getPreferenceValue(sharedPreferences,"thursday_time"))
+        list.add(getPreferenceValue(sharedPreferences,"friday_time"))
+        list.add(getPreferenceValue(sharedPreferences,"saturday_time"))
         TaskRepository.timePerDay = list
+    }
+
+    private fun getPreferenceValue(sharedPreferences: SharedPreferences, key: String): Float { // should be static
+        var result: Float = 1.0f
+        var stringValue = sharedPreferences.getString(key, "1.0")
+        if (stringValue != null && !stringValue.isEmpty()) {
+            result = stringValue.toFloat()
+        } else {
+            println()
+            println("Ope, we got a null or empty string. We should be good though.")
+        }
+        return result
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -115,8 +137,12 @@ class TasksFragment : Fragment(), CardStackListener {
     }
 
     override fun onCardDisappeared(view: View?, position: Int) {
-        val completedTask = tasks.first{!it.completed}
-        tasksViewModel.completeTask(completedTask)
+        if (!tasks.isEmpty()) {
+            val completedTask = tasks.first { !it.completed }
+            if (completedTask != null) {
+                tasksViewModel.completeTask(completedTask)
+            }
+        }
     }
 
     override fun onCardDragging(direction: Direction?, ratio: Float) {

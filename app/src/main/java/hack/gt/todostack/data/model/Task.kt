@@ -2,6 +2,7 @@ package hack.gt.todostack.data.model
 
 import android.graphics.Color
 import com.google.gson.annotations.Expose
+import java.text.SimpleDateFormat
 import java.time.Duration
 import java.util.*
 
@@ -40,5 +41,34 @@ data class Task(
         val green: Int = (baseGreen + this.nextInt(256)) / 2
         val blue: Int = (baseBlue + this.nextInt(256)) / 2
         return Color.rgb(red, green, blue)
+    }
+
+    public fun extractDate(): Date? {
+        val myFormat = "MM/dd/yy"
+        val sdf = SimpleDateFormat(myFormat, Locale.US)
+        // var calendar = Calendar.getInstance()
+        var date: Date? = null
+        if (deadline != null && !deadline.isEmpty()) {
+            date = sdf.parse(deadline)
+        }
+        return date
+    }
+
+    public fun getDayOfWeek(): Int? {
+        var dayOfWeek: Int? = null
+        var date: Date? = extractDate()
+        if (date != null) {
+            var calendar = Calendar.getInstance()
+            calendar.time = date
+            dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK)
+        }
+        return dayOfWeek
+    }
+
+    public fun calculateEstimatedTime(): Double {
+        var estimatedHours = estimatedTimeHours.toDouble()
+        var estimatedMinutes = estimatedTimeMinutes.toDouble()
+        estimatedHours += (estimatedMinutes / 60.0)
+        return estimatedHours
     }
 }
